@@ -1,0 +1,68 @@
+# Analytics Configuration File
+# ============================
+# This file defines what statistics and charts to generate
+
+# Output directory for charts
+output_dir: output
+
+# Statistical Analysis Configuration
+statistics:
+  # Variables to analyze (leave empty to analyze all)
+  variables:
+    - a
+    - b
+    - c
+    - d
+    - e
+
+  # Operations to perform
+  # Available: mean, sum, median, std, var, min, max, count
+  operations:
+    - mean
+    - sum
+    - median
+    - std
+    - min
+    - max
+
+# Chart Generation Configuration
+charts:
+  # Example 1: Bar chart comparing means of all variables
+  - type: bar
+    variables: [a, b, c, d, e]
+    title: "Mean Values Comparison"
+
+  # Example 2: Line chart showing trends
+  - type: line
+    variables: [a, b, c]
+    title: "Trend Analysis (a, b, c)"
+
+  # Example 3: Histogram for single variable distribution
+  - type: histogram
+    variables: [a]
+    title: "Distribution of Variable A"
+
+  # Example 4: Box plot for multiple variables
+  - type: box
+    variables: [a, b, c, d, e]
+    title: "Box Plot - All Variables"
+
+  # Example 5: Scatter plot (2-way chart)
+  - type: scatter
+    variables: [a, b]
+    title: "Scatter Plot: A vs B"
+
+  # Example 6: Another scatter plot
+  - type: scatter
+    variables: [c, d]
+    title: "Scatter Plot: C vs D"
+
+  # Example 7: Correlation heatmap
+  - type: heatmap
+    variables: [a, b, c, d, e]
+    title: "Correlation Heatmap"
+
+  # Example 8: Histogram with multiple variables
+  - type: histogram
+    variables: [b, c]
+    title: "Distribution Comparison (B vs C)"
