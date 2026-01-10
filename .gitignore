@@ -83,3 +83,6 @@ output/
 *.jpg
 *.jpeg
 *.pdf
+
+# Task management
+tasks/
