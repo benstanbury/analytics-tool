@@ -1,6 +1,6 @@
 # Analytics Tool
 
-A flexible Python-based analytics tool for performing statistical analysis and data visualization using YAML configuration files.
+A flexible Python-based analytics tool for performing statistical analysis and data visualisation using YAML configuration files.
 
 ## Features
 
@@ -30,7 +30,7 @@ pip install -r requirements.txt
 This will install:
 - pandas (data manipulation)
 - matplotlib (plotting)
-- seaborn (statistical visualization)
+- seaborn (statistical visualisation)
 - pyyaml (YAML parsing)
 - numpy (numerical operations)
 
@@ -89,7 +89,7 @@ a,b,c,d,e
 
 ```yaml
 statistics:
-  variables: [a, b, c]  # Variables to analyze (omit for all)
+  variables: [a, b, c]  # Variables to analyse (omit for all)
   operations:           # Statistical operations to perform
     - mean              # Average
     - sum               # Total sum
@@ -136,7 +136,7 @@ Show statistical distribution:
 ```
 
 #### Scatter Plot (2-way chart)
-Visualize relationship between two variables:
+Visualise relationship between two variables:
 ```yaml
 - type: scatter
   variables: [a, b]  # First variable is X-axis, second is Y-axis
