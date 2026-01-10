@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import yaml
 import sys
+import json
 from pathlib import Path
 
 
@@ -65,6 +66,9 @@ class AnalyticsTool:
                     self.results[f"{var}_{op}"] = result
                     print(f"  {op:15s}: {result:.4f}")
 
+        # Save statistics to files
+        self._save_statistics()
+
     def _compute_statistic(self, variable, operation):
         """Compute a single statistic for a variable."""
         data_series = self.data[variable]
@@ -85,6 +89,47 @@ class AnalyticsTool:
         else:
             print(f"  Warning: Unknown operation '{operation}'")
             return None
+
+    def _save_statistics(self):
+        """Save statistics to text and JSON files in output directory."""
+        output_dir = Path(self.config.get('output_dir', 'output'))
+        output_dir.mkdir(exist_ok=True)
+
+        stats_config = self.config.get('statistics', {})
+        variables = stats_config.get('variables', list(self.data.columns))
+        operations = stats_config.get('operations', ['mean'])
+
+        # Prepare structured data for JSON
+        stats_data = {}
+        for var in variables:
+            if var in self.data.columns:
+                stats_data[var] = {}
+                for op in operations:
+                    key = f"{var}_{op}"
+                    if key in self.results:
+                        stats_data[var][op] = float(self.results[key])
+
+        # Save to JSON file
+        json_path = output_dir / 'statistics.json'
+        with open(json_path, 'w') as f:
+            json.dump(stats_data, f, indent=2)
+
+        # Save to text file
+        txt_path = output_dir / 'statistics.txt'
+        with open(txt_path, 'w') as f:
+            f.write("="*50 + "\n")
+            f.write("STATISTICAL ANALYSIS\n")
+            f.write("="*50 + "\n\n")
+
+            for var in variables:
+                if var in stats_data:
+                    f.write(f"{var}:\n")
+                    f.write("-" * 30 + "\n")
+                    for op in operations:
+                        if op in stats_data[var]:
+                            value = stats_data[var][op]
+                            f.write(f"  {op:15s}: {value:.4f}\n")
+                    f.write("\n")
 
     def generate_charts(self):
         """Generate charts specified in config."""
