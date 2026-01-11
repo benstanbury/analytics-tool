@@ -1,0 +1,55 @@
+# Learning Platform Analytics Configuration
+# Analyses for understanding learner engagement and progress patterns
+
+output_dir: output_learning
+
+# Statistical Analysis Configuration
+# Analysing key metrics: course progress and learning path position
+statistics:
+  variables:
+    - progress        # Course completion percentage
+    - step            # Position in learning path
+  operations:
+    - mean            # Average values
+    - median          # Middle values (less affected by outliers)
+    - std             # Variation in learner progress
+    - min             # Lowest progress/earliest steps
+    - max             # Highest progress/furthest steps
+    - count           # Number of enrolled courses
+
+# Chart Generation Configuration
+charts:
+  # 1. Progress Distribution
+  # Shows how learners are distributed across completion levels
+  # Helps identify if most learners complete, drop early, or are mid-way
+  - type: histogram
+    variables: [progress]
+    title: "Course Progress Distribution"
+
+  # 2. Learning Path Position Distribution
+  # Shows which steps in learning paths have most enrollments
+  # Helps understand where learners are in their journey
+  - type: histogram
+    variables: [step]
+    title: "Learning Path Step Distribution"
+
+  # 3. Progress and Step Comparison
+  # Box plots show median, quartiles, and outliers side-by-side
+  # Useful for comparing spread and central tendency
+  - type: box
+    variables: [progress, step]
+    title: "Progress and Step Distributions"
+
+  # 4. Step vs Progress Relationship
+  # Scatter plot to see if learners further along paths have different progress
+  # Can reveal if later steps are harder (lower progress) or if engaged learners reach further steps
+  - type: scatter
+    variables: [step, progress]
+    title: "Learning Path Step vs Course Progress"
+
+  # 5. Overlaid Progress Distribution
+  # Alternative view of progress distribution with kernel density estimation
+  # Provides smooth curve showing progress patterns
+  - type: histogram
+    variables: [progress]
+    title: "Detailed Progress Distribution"

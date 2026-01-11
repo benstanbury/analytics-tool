@@ -1,0 +1,63 @@
+# Learning Platform Detailed Analytics Configuration
+# Focus on completion patterns and step progression analysis
+
+output_dir: output_learning_detailed
+
+# Statistical Analysis Configuration
+# Deeper dive into completion metrics
+statistics:
+  variables:
+    - progress
+    - step
+  operations:
+    - mean
+    - median
+    - std
+    - var            # Variance shows spread in data
+    - min
+    - max
+    - count
+
+# Chart Generation Configuration
+charts:
+  # 1. Detailed Progress Distribution
+  # Multiple overlaid histograms to see patterns
+  - type: histogram
+    variables: [progress]
+    title: "Learner Progress Completion Levels"
+
+  # 2. Step Distribution Analysis
+  # Shows the learning path funnel
+  - type: histogram
+    variables: [step]
+    title: "Distribution Across Learning Path Steps"
+
+  # 3. Multi-variable Line Chart
+  # Shows trends if data is sorted (useful for time-series view)
+  - type: line
+    variables: [progress, step]
+    title: "Progress and Step Trends"
+
+  # 4. Progress Heatmap Correlation
+  # Shows relationship between progress and step as correlation
+  - type: heatmap
+    variables: [progress, step]
+    title: "Correlation: Progress and Learning Path Position"
+
+  # 5. Detailed Box Plot Comparison
+  # Shows statistical distribution with quartiles
+  - type: box
+    variables: [progress, step]
+    title: "Statistical Distribution - Progress vs Step"
+
+  # 6. Step vs Progress Scatter
+  # Each dot is a course enrollment
+  - type: scatter
+    variables: [step, progress]
+    title: "Learning Path Step vs Course Completion"
+
+  # 7. Bar Chart Comparison
+  # Compares mean values of progress and step
+  - type: bar
+    variables: [progress, step]
+    title: "Average Progress and Step Comparison"
