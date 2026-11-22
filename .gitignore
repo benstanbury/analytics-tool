@@ -86,3 +86,5 @@ output/
 
 # Task management
 tasks/
+# Generated analysis output
+output*/
