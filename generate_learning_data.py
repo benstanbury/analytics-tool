@@ -8,6 +8,9 @@ import random
 # Set random seed for reproducibility
 random.seed(42)
 
+# Fixed "now" for last-login dates, so every run writes the same data
+REFERENCE_DATE = datetime(2026, 1, 11, 21, 39, 50)
+
 # Define learning paths
 learning_paths = {
     'Python': [
@@ -81,7 +84,7 @@ for i in range(1000):
         last_login_days = random.randint(0, 30)
     else:
         last_login_days = random.randint(31, 180)
-    last_login = datetime.now() - timedelta(days=last_login_days)
+    last_login = REFERENCE_DATE - timedelta(days=last_login_days)
 
     # Progress percentage
     # Active users tend to have higher or varied progress
