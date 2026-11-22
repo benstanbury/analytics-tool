@@ -225,7 +225,7 @@ class AnalyticsTool:
     def _create_box_plot(self, variables, title):
         """Create a box plot."""
         data_to_plot = [self.data[var].dropna() for var in variables if var in self.data.columns]
-        plt.boxplot(data_to_plot, labels=variables)
+        plt.boxplot(data_to_plot, tick_labels=variables)
         plt.ylabel('Value')
         plt.title(title)
         plt.xticks(rotation=45)
