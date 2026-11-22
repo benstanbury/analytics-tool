@@ -9,6 +9,10 @@ import os
 import sys
 import ast
 
+# A standalone script (run: python test_structure.py), not a pytest module; its helpers
+# take arguments, so stop pytest collecting them as tests.
+__test__ = False
+
 def test_file_exists(filename, description):
     """Test if a file exists."""
     exists = os.path.exists(filename)
